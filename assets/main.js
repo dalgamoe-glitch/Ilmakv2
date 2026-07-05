@@ -204,9 +204,15 @@
     if (loaderBar) loaderBar.style.width = "100%";
     setTimeout(dismissLoader, 300);
   } else {
-    window.addEventListener("load", () => setTimeout(dismissLoader, 500));
-    // safety: never trap the user
-    setTimeout(dismissLoader, 2600);
+    // Dismiss as soon as the DOM is ready — do NOT wait on window.load, which
+    // blocks on fonts/images and can hang on a weak connection.
+    if (document.readyState === "interactive" || document.readyState === "complete") {
+      setTimeout(dismissLoader, 500);
+    } else {
+      document.addEventListener("DOMContentLoaded", () => setTimeout(dismissLoader, 400));
+    }
+    // hard safety cap: never trap the user behind the loader
+    setTimeout(dismissLoader, 1800);
   }
 
   /* ---------------------------------------------------------
