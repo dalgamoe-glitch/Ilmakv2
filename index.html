@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ILMAK — Where Your Textbook Becomes Your Study Companion</title>
+  <meta name="description" content="ILMAK (علمك) is an AI-powered study ecosystem that turns your schoolbook into explanations, flashcards, quizzes, and focused study sessions — grounded in your own curriculum." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060409'/%3E%3Cpath d='M11 22V10M11 10l6 6 6-6' stroke='%23C4B5FD' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <canvas class="loader__canvas" id="loaderCanvas"></canvas>
+    <div class="loader__meta">
+      <div class="loader__brand mono">/ ILMAK · <span class="ar-glyph">علمك</span></div>
+      <div class="loader__status mono" data-i18n="loader.status">INITIALIZING YOUR STUDY ENVIRONMENT</div>
+      <div class="loader__bar"><span id="loaderBar"></span></div>
+    </div>
+  </div>
+
+  <!-- ============ PARTICLE FIELD (fixed background for hero + about) ============ -->
+  <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V5M6 5l6 6 6-6"/></svg>
+      </span>
+      <span class="nav__word">ILMAK<span class="nav__reg">®</span></span>
+    </a>
+    <div class="nav__right">
+      <span class="nav__hud mono" data-i18n="nav.hud">STUDY INTELLIGENCE</span>
+      <div class="lang" role="group" aria-label="Language">
+        <button class="lang__btn is-active" data-set-lang="en" type="button">EN</button>
+        <span class="lang__sep" aria-hidden="true">|</span>
+        <button class="lang__btn" data-set-lang="ar" type="button" lang="ar">ع</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hud hud--tl mono">[ V.ILMAK ]</div>
+      <div class="hud hud--tr mono">MISSION · <span data-i18n="hud.mission">STUDY INTELLIGENCE</span></div>
+      <div class="hud hud--counter mono">[ 001 / 009 ]</div>
+
+      <div class="hero__grid">
+        <div class="hero__lead">
+          <span class="tag mono" data-i18n="hero.tag">[ AI STUDY ECOSYSTEM ]</span>
+          <h1 class="display hero__title">
+            <span class="reveal-word" data-i18n="hero.l1">
+              <svg class="spark" viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M12 2l1.9 6.8L20 12l-6.1 3.2L12 22l-1.9-6.8L4 12l6.1-3.2z" fill="url(#sparkg)"/><defs><linearGradient id="sparkg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs></svg>
+              WHERE YOUR
+            </span>
+            <span class="reveal-word" data-i18n="hero.l2">TEXTBOOK BECOMES</span>
+            <span class="reveal-word" data-i18n="hero.l3">YOUR STUDY</span>
+            <span class="reveal-word grad" data-i18n="hero.l4">COMPANION</span>
+          </h1>
+        </div>
+
+        <div class="hero__aside">
+          <div class="hero__index mono">(A)</div>
+          <p class="hero__body" data-i18n="hero.body">ILMAK turns your schoolbook into explanations, flashcards, quizzes, and focused study sessions — one calm study environment grounded in your own curriculum.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#toolkit">
+              <span class="btn__corner btn__corner--tl"></span>
+              <span class="btn__corner btn__corner--br"></span>
+              <span data-i18n="hero.cta">START STUDYING</span>
+            </a>
+            <a class="link-demo" href="#about"><span data-i18n="hero.demo">Watch Demo</span> <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT / SCROLL REVEAL ============ -->
+    <section class="about" id="about">
+      <div class="about__label mono">/ <span data-i18n="about.label">ABOUT ILMAK</span></div>
+      <div class="about__grid">
+        <h2 class="about__title reveal-lines" data-i18n="about.title">ILMAK turns static school material into an active study system.</h2>
+        <div class="about__col">
+          <p class="about__body" data-i18n="about.body">Upload a textbook, choose a unit or lesson, and study it without mixing unrelated chapters. Understand the content, practise it, solve problems, and prepare for the exam — one continuous process instead of a dozen disconnected tools.</p>
+          <a class="link-demo" href="#toolkit"><span data-i18n="about.link">Explore the toolkit</span> <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE CAROUSEL ============ -->
+    <section class="toolkit" id="toolkit">
+      <div class="toolkit__head">
+        <div class="hud hud--tl mono">/ <span data-i18n="toolkit.label">THE TOOLKIT</span></div>
+        <h2 class="display toolkit__title" data-i18n="toolkit.title">EVERYTHING IN ONE STUDY ENVIRONMENT</h2>
+        <p class="toolkit__sub" data-i18n="toolkit.sub">Nine connected tools. One textbook. Drag to spin, or let it rotate.</p>
+      </div>
+
+      <div class="carousel" id="carousel" aria-roledescription="carousel">
+        <div class="carousel__stage" id="carouselStage">
+          <!-- cards injected/enhanced by JS; authored here for no-JS fallback -->
+          <article class="card" style="--i:0">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[01]</div>
+            <div class="card__icon" data-icon="teacher"></div>
+            <h3 class="card__title" data-i18n="feat.teacher.t">AI Teacher</h3>
+            <p class="card__desc" data-i18n="feat.teacher.d">Ask about your lesson in Simple, Complex, or Tutor mode — guided step by step, not just handed the answer.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:1">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[02]</div>
+            <div class="card__icon" data-icon="segment"></div>
+            <h3 class="card__title" data-i18n="feat.segment.t">Book Segmentation</h3>
+            <p class="card__desc" data-i18n="feat.segment.d">ILMAK splits your uploaded book into structured units, lessons, and page ranges so large textbooks stay easy to navigate.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:2">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[03]</div>
+            <div class="card__icon" data-icon="cards"></div>
+            <h3 class="card__title" data-i18n="feat.cards.t">Flashcards</h3>
+            <p class="card__desc" data-i18n="feat.cards.d">Lesson content becomes concise question-and-answer cards that drive active recall and fast revision.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:3">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[04]</div>
+            <div class="card__icon" data-icon="quiz"></div>
+            <h3 class="card__title" data-i18n="feat.quiz.t">Quizzes & Exams</h3>
+            <p class="card__desc" data-i18n="feat.quiz.d">Generate questions from a specific lesson or section — grounded in your material, never invented from unrelated topics.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:4">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[05]</div>
+            <div class="card__icon" data-icon="keynote"></div>
+            <h3 class="card__title" data-i18n="feat.keynote.t">Keynotes & Summaries</h3>
+            <p class="card__desc" data-i18n="feat.keynote.d">The main ideas, definitions, and principles you actually need to understand and remember — surfaced for you.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:5">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[06]</div>
+            <div class="card__icon" data-icon="worksheet"></div>
+            <h3 class="card__title" data-i18n="feat.worksheet.t">Worksheet Solver</h3>
+            <p class="card__desc" data-i18n="feat.worksheet.d">Upload a worksheet and get a step-by-step solution that separates the method and reasoning from the final answer.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:6">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[07]</div>
+            <div class="card__icon" data-icon="laws"></div>
+            <h3 class="card__title" data-i18n="feat.laws.t">Laws & Visuals</h3>
+            <p class="card__desc" data-i18n="feat.laws.d">Scientific laws, mathematical relationships, and difficult concepts explained through structured, visual representations.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:7">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[08]</div>
+            <div class="card__icon" data-icon="focus"></div>
+            <h3 class="card__title" data-i18n="feat.focus.t">Focus & Productivity</h3>
+            <p class="card__desc" data-i18n="feat.focus.d">Focus Mode, a Pomodoro timer, a notebook, and a calculator — finish an entire study session inside one environment.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+          <article class="card" style="--i:8">
+            <div class="card__frame"></div>
+            <div class="card__no mono">[09]</div>
+            <div class="card__icon" data-icon="library"></div>
+            <h3 class="card__title" data-i18n="feat.library.t">Personal Study Library</h3>
+            <p class="card__desc" data-i18n="feat.library.d">Books, generated quizzes, flashcards, and notes save to your account, ready to open again whenever you study.</p>
+            <span class="card__more mono" data-i18n="cta.more">READ MORE ↗</span>
+          </article>
+        </div>
+
+        <div class="carousel__controls">
+          <button class="carousel__btn" id="prevBtn" type="button" aria-label="Previous feature">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <div class="carousel__now mono"><span id="carouselNow">01</span> / 09</div>
+          <button class="carousel__btn" id="nextBtn" type="button" aria-label="Next feature">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS BAND ============ -->
+    <section class="stats" id="stats">
+      <div class="stats__label mono">[ <span data-i18n="stats.label">BUILT FOR STUDENTS 12–18</span> ]</div>
+      <div class="stats__grid">
+        <div class="stat">
+          <div class="stat__num display">12–18</div>
+          <div class="stat__cap mono" data-i18n="stats.age">TARGET AGE RANGE</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num display">1</div>
+          <div class="stat__cap mono" data-i18n="stats.env">UNIFIED STUDY ENVIRONMENT</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num display">09</div>
+          <div class="stat__cap mono" data-i18n="stats.tools">CONNECTED STUDY TOOLS</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num display">AR·EN</div>
+          <div class="stat__cap mono" data-i18n="stats.lang">ARABIC & ENGLISH MATERIAL</div>
+        </div>
+      </div>
+      <p class="stats__note" data-i18n="stats.note">Built for students on Arabic curricula in Jordan and the wider Arab region — and the parents who want a more structured, independent way to study.</p>
+    </section>
+
+    <!-- ============ CLOSING / MISSION ============ -->
+    <section class="mission" id="mission">
+      <div class="mission__brand">ILMAK<span class="nav__reg">®</span></div>
+      <div class="mission__kick mono">/ <span data-i18n="mission.kick">OUR MISSION:</span></div>
+      <h2 class="display mission__title">
+        <span data-i18n="mission.t1">STUDY WITH</span>
+        <span class="grad" data-i18n="mission.t2">CONFIDENCE</span>
+        <svg class="spark spark--inline" viewBox="0 0 24 24" width="42" height="42" aria-hidden="true"><path d="M12 2l1.9 6.8L20 12l-6.1 3.2L12 22l-1.9-6.8L4 12l6.1-3.2z" fill="url(#sparkg2)"/><defs><linearGradient id="sparkg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs></svg>
+      </h2>
+      <div class="mission__foot">
+        <div class="mission__est mono">[ <span data-i18n="mission.est">ESTABLISHED 2024</span> ]</div>
+        <p class="mission__body" data-i18n="mission.body">Our mission is to make high-quality, personalized study support accessible to every student — so difficult material can be understood, large textbooks can be managed, and exams can be approached with preparation rather than fear. Our vision is to build the leading AI study ecosystem for students in the Arab world.</p>
+        <a class="link-demo" href="#top"><span data-i18n="mission.link">Read our story</span> <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__tag mono" data-i18n="footer.tag">UPLOAD YOUR BOOK. UNDERSTAND YOUR LESSONS. STUDY WITH CONFIDENCE.</div>
+    <div class="footer__row">
+      <span class="footer__brand">ILMAK · <span class="ar-glyph">علمك</span></span>
+      <span class="footer__copy mono" data-i18n="footer.copy">© 2024 ILMAK — AI STUDY ECOSYSTEM</span>
+    </div>
+  </footer>
+
+  <script src="assets/i18n.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
